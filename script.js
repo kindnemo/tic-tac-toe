@@ -1,0 +1,1 @@
+const playSquare = document.querySelectorAll(".play-square");
