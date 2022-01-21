@@ -2,7 +2,7 @@ body{
     background-color: #FFCE96;
 }
 #par-div{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;  
 }
 #play-area-div{
     display: flex;
@@ -17,9 +17,9 @@ body{
     height: 70vh;
     width: 70vw;
     max-width: 800px;
-    
+    max-height: 800px;
     border-radius: 20px;
-    margin: 10px;
+    margin: 30px;
     grid-template: repeat(3, 1fr)/repeat(3,1fr);
     background-color: #FF7777;
     box-shadow: 5px 3px 30px black;
@@ -36,15 +36,15 @@ body{
     justify-content: center;
     gap: 50px;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 #score-user{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 30px;
     width: 30%;
+    padding: 30px;
     max-width: 400px;
     background-color: #FF7777;
     border-radius: 15px;
@@ -63,10 +63,16 @@ body{
     display: flex;
     gap: 30px;
 }
-svg{
+.indic-icon{
     width: 50px;
     height: 50px;
     color: white;
+}
+
+.play-icons{
+    width: 50%;
+    height: auto;
+    color: #00303B;
 }
 
 
@@ -84,3 +90,47 @@ svg{
     border-bottom: none;
 }
 /* BORDER WORK */
+
+
+/* Media Queries */
+
+@media(max-width: 900px){
+    #play-area{
+        width: 90%;
+        /* height: 60vh; */
+
+    }
+}
+
+@media(max-width: 550px){
+    #play-area{
+        height: 55vh;
+        margin: 20% 0 0 0;
+    }
+    #score{
+        gap: 10px;
+    }
+    #score-div{
+        margin-top: 60px;
+    }
+    #score-user{
+        width: 35%;
+    }
+    .indic-icon{
+        height: 40px;
+        width: auto;
+    }
+    .user-div{
+        padding: 15px;
+    }
+}
+
+@media(max-width: 450px){
+    #score-div{
+        gap: 30px;
+    }
+    #play-area{
+        width: 90%;
+        height: 50vh;
+    }
+}
