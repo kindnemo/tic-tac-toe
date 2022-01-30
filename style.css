@@ -29,6 +29,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 #score-div{
     display: flex;
@@ -58,6 +59,7 @@ body{
     padding: 20px;
     border-radius: 100%;
     box-shadow: 5px 3px 15px black;
+    cursor: pointer;
 }
 #score{
     display: flex;
@@ -68,28 +70,22 @@ body{
     height: 50px;
     color: white;
 }
-
+.user-div:active{
+    box-shadow: none;
+}
 .play-icons{
-    width: 50%;
+    width: 90%;
+    max-width: 150px;
     height: auto;
     color: #00303B;
 }
+.play-icons-uncheck{
+    width: 90%;
+    max-width: 150px;
+    height: auto;
+    color: rgba(255, 255, 255, 0.3);
+}
 
-
-/* BORDER WORK */
-.top{
-    border-top: none;
-}
-.left{
-    border-left: none;
-}
-.right{
-    border-right: none;
-}
-.bottom{
-    border-bottom: none;
-}
-/* BORDER WORK */
 
 
 /* Media Queries */
@@ -97,14 +93,13 @@ body{
 @media(max-width: 900px){
     #play-area{
         width: 90%;
-        /* height: 60vh; */
-
+        
     }
 }
 
 @media(max-width: 550px){
     #play-area{
-        height: 55vh;
+        height: 60vh;
         margin: 20% 0 0 0;
     }
     #score{
@@ -123,6 +118,9 @@ body{
     .user-div{
         padding: 15px;
     }
+    .play-square{
+        border: 3px solid white;
+    }
 }
 
 @media(max-width: 450px){
@@ -134,3 +132,22 @@ body{
         height: 50vh;
     }
 }
+
+
+
+
+
+/* BORDER WORK */
+.top{
+    border-top: none;
+}
+.left{
+    border-left: none;
+}
+.right{
+    border-right: none;
+}
+.bottom{
+    border-bottom: none;
+}
+/* BORDER WORK */
