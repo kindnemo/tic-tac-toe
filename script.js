@@ -1,27 +1,39 @@
 const playSquare = document.querySelectorAll(".play-square");
 const winPatterns = [
-    [1,2,3],
-    [4,5,6],
-    [7,8,9],
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
     [1,4,7],
     [2,5,8],
-    [3,6,9],
-    [1,5,9],
-    [3,5,7]
+    [0,4,8],
+    [2,4,6]
 ]
 
-let playerOne = [];
-let playerTwo = [];
+let crossArr = [];
+let circleArr = [];
 let isCross = true;
 
 
+
+// GAME MECHANICS
+function gameMech(crossArray, circleArray){
+
+}
+// GAME MECHANICS
+
+
+
+// Displaying the hover effects
 function onPress(e){
     
     if(e.target.nodeName == "path"){
         return;
     }
+    
+    let indexOfElement;
+    
 
-    let indexOfElement = Array.prototype.indexOf.call(playSquare, e.target);
     let parent = e.target;
     
     
@@ -43,27 +55,30 @@ function onPress(e){
         square.removeEventListener("mouseenter", disPlay);
         square.removeEventListener("mouseleave", removePlay);
         square.removeEventListener("click", onPress);
+        indexOfElement = Array.prototype.indexOf.call(playSquare, square)
     }else if(e.target.classList.contains("play-square")){
         e.target.removeEventListener("mouseenter", disPlay);
         e.target.removeEventListener("mouseleave", removePlay);
         e.target.removeEventListener("click", onPress);
+        indexOfElement = Array.prototype.indexOf.call(playSquare, e.target);
     }
     
     if(isCross){
         parent.innerHTML = cross;
         isCross = false;
+        crossArr.push(indexOfElement);
     }else if(!isCross){
         parent.innerHTML = circle;
         isCross = true;
+        circleArr.push(indexOfElement);
     }
     
+    console.log(crossArr);
+    console.log(circleArr);
 }
 
 
 
-
-
-// Displaying the hover effects
 function disPlay(e){
     // console.log(e.target.classList);
     if(e.target.classList.contains("checked")){
@@ -88,6 +103,8 @@ function disPlay(e){
         parent.innerHTML = uncheckCircle;
     }
 }
+
+
 
 function removePlay (e){
     // console.log(e);

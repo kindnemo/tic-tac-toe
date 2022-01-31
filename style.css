@@ -62,6 +62,8 @@ body{
     border-radius: 100%;
     box-shadow: 5px 3px 15px black;
     cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
 }
 #score{
     display: flex;
@@ -132,6 +134,9 @@ body{
     #play-area{
         width: 90%;
         height: 50vh;
+    }
+    .play-square{
+        cursor: default;
     }
 }
 
