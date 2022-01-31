@@ -16,6 +16,11 @@ let isCross = true;
 
 
 function onPress(e){
+    
+    if(e.target.nodeName == "path"){
+        return;
+    }
+
     let indexOfElement = Array.prototype.indexOf.call(playSquare, e.target);
     let parent = e.target;
     
@@ -31,6 +36,19 @@ function onPress(e){
     </svg>`;
 
 
+    
+    
+    if(!e.target.classList.contains("play-square")){
+        let square = e.target.closest(".play-square");
+        square.removeEventListener("mouseenter", disPlay);
+        square.removeEventListener("mouseleave", removePlay);
+        square.removeEventListener("click", onPress);
+    }else if(e.target.classList.contains("play-square")){
+        e.target.removeEventListener("mouseenter", disPlay);
+        e.target.removeEventListener("mouseleave", removePlay);
+        e.target.removeEventListener("click", onPress);
+    }
+    
     if(isCross){
         parent.innerHTML = cross;
         isCross = false;
@@ -38,17 +56,6 @@ function onPress(e){
         parent.innerHTML = circle;
         isCross = true;
     }
-
-
-    if(!e.target.classList.contains("play-square")){
-        let square = e.target.closest(".play-square");
-        square.removeEventListener("mouseenter", disPlay);
-        square.removeEventListener("mouseleave", removePlay);
-    }else if(e.target.classList.contains("play-square")){
-        e.target.removeEventListener("mouseenter", disPlay);
-        e.target.removeEventListener("mouseleave", removePlay);
-    }
-
     
 }
 
@@ -95,7 +102,5 @@ function removePlay (e){
 
 playSquare.forEach(ele=>ele.addEventListener("mouseenter", disPlay));
 playSquare.forEach(ele=>ele.addEventListener("mouseleave", removePlay));
-playSquare.forEach(ele=>ele.addEventListener("click", onPress, {
-    // once: true
-}));
+playSquare.forEach(ele=>ele.addEventListener("click", onPress));
 
