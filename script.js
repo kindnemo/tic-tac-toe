@@ -16,9 +16,14 @@ let isCross = true;
 
 
 
+
+
 // GAME MECHANICS
 function gameMech(crossArray, circleArray){
+    crossArray.sort(function(a, b){return a-b});
+    circleArray.sort(function(a, b){return a-b});
 
+    console.log(crossArray, circleArray);
 }
 // GAME MECHANICS
 
@@ -26,15 +31,16 @@ function gameMech(crossArray, circleArray){
 
 // Displaying the hover effects
 function onPress(e){
+
+    let parent = e.target;
     
     if(e.target.nodeName == "path"){
-        return;
+        parent = e.target.closest(".play-square")
     }
     
     let indexOfElement;
     
 
-    let parent = e.target;
     
     
     
@@ -73,14 +79,13 @@ function onPress(e){
         circleArr.push(indexOfElement);
     }
     
-    console.log(crossArr);
-    console.log(circleArr);
+    gameMech(crossArr, circleArr);
 }
 
 
 
 function disPlay(e){
-    // console.log(e.target.classList);
+
     if(e.target.classList.contains("checked")){
         return;
     }
@@ -121,3 +126,10 @@ playSquare.forEach(ele=>ele.addEventListener("mouseenter", disPlay));
 playSquare.forEach(ele=>ele.addEventListener("mouseleave", removePlay));
 playSquare.forEach(ele=>ele.addEventListener("click", onPress));
 
+
+
+
+// Checks and removes the hover effect on mobile phones 
+if(window.innerWidth < 550){
+    playSquare.forEach(ele=>ele.removeEventListener("mouseenter", disPlay));
+}
