@@ -22,10 +22,55 @@ let isCross = true;
 function gameMech(crossArray, circleArray){
     crossArray.sort(function(a, b){return a-b});
     circleArray.sort(function(a, b){return a-b});
+    let crossWin;
+    let circleWin;
 
-    console.log(crossArray, circleArray);
+    // FOR CROSS ARRAY
+    for(let i= 0; i<winPatterns.length; i++){
+        for(let j = 0; j<winPatterns[i].length; j++){
+            if(crossArr.indexOf(winPatterns[i][j])!=-1){
+                crossWin = true;
+            }else{
+                crossWin = false;
+                break;
+            }
+        }
+        if(crossWin == true || circleWin == true){
+            break;
+        }
+    }
+    // FOR CROSS ARRAY
+
+
+    // FOR CIRCLE ARRAY
+    for(let i= 0; i<winPatterns.length; i++){
+        for(let j = 0; j<winPatterns[i].length; j++){
+            if(circleArr.indexOf(winPatterns[i][j])!= -1){
+                circleWin = true;
+            }else{
+                circleWin = false;
+                break;
+            }
+        }
+        if(crossWin == true || circleWin == true){
+            break;
+        }
+    }
+    // FOR CIRCLE ARRAY
+
+    if(crossWin && crossArr.length >= 3){
+        console.log("Cross Win");
+    }else if(circleWin && circleArr.length >= 3){
+        console.log("Circle Wins");
+    }else if(crossArr.length >3 && circleArr.length > 3){
+        console.log("Draw");
+    }
+
+    
 }
 // GAME MECHANICS
+
+
 
 
 
