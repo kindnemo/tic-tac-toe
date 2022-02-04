@@ -62,16 +62,13 @@ function gameMech(crossArray, circleArray){
         console.log("Cross Win");
     }else if(circleWin && circleArr.length >= 3){
         console.log("Circle Wins");
-    }else if(crossArr.length >3 && circleArr.length > 3){
+    }else if(crossArr.length > 4){
         console.log("Draw");
     }
 
     
 }
-// GAME MECHANICS
-
-
-
+//Game Mechanics
 
 
 // Displaying the hover effects
@@ -165,6 +162,8 @@ function removePlay (e){
     par.innerHTML = '';
 }
 // Displaying the hover effects
+
+
 
 
 playSquare.forEach(ele=>ele.addEventListener("mouseenter", disPlay));
