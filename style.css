@@ -1,6 +1,52 @@
 body{
     background-color: #FFCE96;
 }
+.display{
+    display: none !important;
+}
+#win-prompt{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;  
+}
+#win-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 70%;
+    min-height: 30%;
+    max-width: 600px;
+    background-color: #FF7777;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #00303B;
+    gap: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.4);
+}
+#restart{
+    background-color: #00303B;
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 5px 3px 10px black;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+#restart:active{
+    box-shadow: none;
+}
 #par-div{
     font-family: 'Montserrat', sans-serif;  
 }
