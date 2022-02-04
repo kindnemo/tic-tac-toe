@@ -1,4 +1,7 @@
 const playSquare = document.querySelectorAll(".play-square");
+const winPrompt = document.querySelector("#win-prompt");
+const winnerPara = document.querySelector("#winner");
+const restart = document.querySelector("#restart");
 const winPatterns = [
     [0,1,2],
     [3,4,5],
@@ -59,14 +62,33 @@ function gameMech(crossArray, circleArray){
     // FOR CIRCLE ARRAY
 
     if(crossWin && crossArr.length >= 3){
-        console.log("Cross Win");
+        disPlayWin("Cross Wins")
     }else if(circleWin && circleArr.length >= 3){
-        console.log("Circle Wins");
+        disPlayWin("Circle Wins");
     }else if(crossArr.length > 4){
-        console.log("Draw");
+        disPlayWin("Draw");
     }
-
     
+}
+
+
+function disPlayWin(str){
+    winnerPara.textContent = str;
+    winPrompt.classList.toggle("display");
+}
+
+function restartFunc(){
+    playSquare.forEach((ele)=>{
+        ele.innerHTML = "";
+        if(ele.classList.contains("checked")){
+            ele.classList.remove("checked");
+            ele.addEventListener("click", onPress);
+        }
+    });
+    winPrompt.classList.toggle("display");
+    isCross = true;
+    crossArr = [];
+    circleArr = [];
 }
 //Game Mechanics
 
@@ -100,13 +122,11 @@ function onPress(e){
     
     if(!e.target.classList.contains("play-square")){
         let square = e.target.closest(".play-square");
-        square.removeEventListener("mouseenter", disPlay);
-        square.removeEventListener("mouseleave", removePlay);
+        square.classList.add("checked");
         square.removeEventListener("click", onPress);
         indexOfElement = Array.prototype.indexOf.call(playSquare, square)
     }else if(e.target.classList.contains("play-square")){
-        e.target.removeEventListener("mouseenter", disPlay);
-        e.target.removeEventListener("mouseleave", removePlay);
+        e.target.classList.add("checked");
         e.target.removeEventListener("click", onPress);
         indexOfElement = Array.prototype.indexOf.call(playSquare, e.target);
     }
@@ -154,7 +174,6 @@ function disPlay(e){
 
 
 function removePlay (e){
-    // console.log(e);
     if(e.target.classList.contains("checked")){
         return;
     }
@@ -170,7 +189,7 @@ playSquare.forEach(ele=>ele.addEventListener("mouseenter", disPlay));
 playSquare.forEach(ele=>ele.addEventListener("mouseleave", removePlay));
 playSquare.forEach(ele=>ele.addEventListener("click", onPress));
 
-
+restart.addEventListener("click", restartFunc);
 
 
 // Checks and removes the hover effect on mobile phones 
