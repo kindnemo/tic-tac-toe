@@ -101,6 +101,7 @@ body{
     font-size: 3rem;
     font-weight: 600;
     color: #00303B;
+    gap: 20px;
 }
 .user-div{
     background-color: #00303B;
