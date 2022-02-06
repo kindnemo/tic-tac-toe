@@ -2,6 +2,10 @@ const playSquare = document.querySelectorAll(".play-square");
 const winPrompt = document.querySelector("#win-prompt");
 const winnerPara = document.querySelector("#winner");
 const restart = document.querySelector("#restart");
+const pOneScore = document.querySelector("#player-one");
+const pTwoScore = document.querySelector("#player-two");
+
+
 const winPatterns = [
     [0,1,2],
     [3,4,5],
@@ -12,7 +16,9 @@ const winPatterns = [
     [0,4,8],
     [2,4,6]
 ]
-
+let crossScore = 0;
+let circleScore = 0;
+let computerArr = [0,1,2,3,4,5,6,7,8];
 let crossArr = [];
 let circleArr = [];
 let isCross = true;
@@ -22,6 +28,9 @@ let isCross = true;
 
 
 // GAME MECHANICS
+
+
+
 function gameMech(crossArray, circleArray){
     crossArray.sort(function(a, b){return a-b});
     circleArray.sort(function(a, b){return a-b});
@@ -62,8 +71,12 @@ function gameMech(crossArray, circleArray){
     // FOR CIRCLE ARRAY
 
     if(crossWin && crossArr.length >= 3){
-        disPlayWin("Cross Wins")
+        crossScore++
+        pOneScore.textContent = crossScore;
+        disPlayWin("Cross Wins");
     }else if(circleWin && circleArr.length >= 3){
+        circleScore++
+        pTwoScore.textContent = circleScore;
         disPlayWin("Circle Wins");
     }else if(crossArr.length > 4){
         disPlayWin("Draw");
@@ -89,13 +102,19 @@ function restartFunc(){
     isCross = true;
     crossArr = [];
     circleArr = [];
+    computerArr = [0,1,2,3,4,5,6,7,8];
+    if(crossScore == 5 || circleScore == 5){
+        crossScore = 0 ;
+        circleScore = 0;
+        pOneScore.textContent = 0;
+        pTwoScore.textContent = 0;
+    }
 }
 //Game Mechanics
 
 
 // Displaying the hover effects
 function onPress(e){
-
     let parent = e.target;
     
     if(e.target.nodeName == "path"){
@@ -131,6 +150,11 @@ function onPress(e){
         indexOfElement = Array.prototype.indexOf.call(playSquare, e.target);
     }
     
+    //Removes the square selected from the computer array
+    if(isCross){
+        computerArr.splice((computerArr.indexOf(indexOfElement)),1);
+    }
+
     if(isCross){
         parent.innerHTML = cross;
         isCross = false;
